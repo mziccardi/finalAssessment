@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Garage-bin</title>
+     <link rel="stylesheet" type="text/css" href="styles.css"/>
+  </head>
+  <body>
+    <h2>GARAGEBIN</h2>
+    <button class='garage-door'>Garage Door</button>
+    <div class='garage'>
+    <form>
+      <label>Name <input type='text' id='name' class='name-input' /></label>
+      <label>Reason for Storage <input type='text' id='reason' class='reason-input' /></label>
+      <label> Cleanliness
+        <select id='clean' name='cleanliness'>
+          <option value='sparkling'>sparkling</option>
+          <option value='dusty'>dusty</option>
+          <option value='rancid'>rancid</option>
+        </select>
+      </label>
+      <button class='submit' type='submit'>Add to Garage</button>
+    </form>
+    <button class='sort'>Sort by Name</button>
+    <div class='all-counts'>
+      <div class='item-count'>Total number of items: 0</div>
+      <div class='sparkle-count'> Number of sparkling items: 0</div>
+      <div class='dusty-count'> Number of dusty items: 0</div>
+      <div class='rancid-count'> Number of rancid items: 0</div>
+    </div>
+    <ul class='item-list'></ul>
+  </div>
+
+    <button class='test'>test</button>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <script type='text/javascript' src='index.js'></script>
+  <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+  </body>
+</html>
