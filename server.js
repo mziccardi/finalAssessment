@@ -61,3 +61,5 @@ app.post('/api/items', (request, response)=>{
 app.listen(app.get('port'), ()=>{
   console.log(`${app.locals.title} is running at ${app.get('port')}`)
 })
+
+module.exports = app

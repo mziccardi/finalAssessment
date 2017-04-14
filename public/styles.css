@@ -1,0 +1,64 @@
+.garage-door{
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:auto;
+}
+.items-card{
+  background-color:DIMGREY;
+  color: white;
+  text-align: center;
+  margin: auto;
+  padding:10px;
+  border-style: solid;
+  border-width: medium;
+  width:30%;
+}
+.all-counts{
+  margin:auto;
+  padding: 3% 0 3% 0;
+  text-align: center;
+  background-color: lightblue;
+  width: 30%;
+  margin-left:37%;
+}
+.item-count{
+  display: inline-block;
+}
+.sparkle-count{
+  display: inline-block;
+  margin: auto;
+}
+.dusty-count{
+  display: inline-block;
+  margin: auto;
+}
+.rancid-count{
+  display: inline-block;
+  margin: auto;
+}
+
+.door-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  border: 2px solid black;
+  padding: 2%;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+input {
+  margin: 10px;
+  height: 25px;
+  width: 60%;
+  background-color: #f0efef;
+  border: 1px solid gray;
+  border-radius: 3px;
+}
