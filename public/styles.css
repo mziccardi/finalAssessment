@@ -62,3 +62,6 @@ input {
   border: 1px solid gray;
   border-radius: 3px;
 }
+.garage {
+  z-index: 1
+}

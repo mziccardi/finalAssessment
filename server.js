@@ -40,14 +40,21 @@ app.get('/api/items/:id', (request,response)=>{
   })
   response.status(200).json(item)
 })
+
+
 app.patch('/api/items/:id', (request,response)=>{
   const { id } = request.params
-  const item = app.locals.items.filter((item)=>{
+  const { cleanliness } = request.body
+  console.log(cleanliness);
+  const updatedItem = app.locals.items.map((item)=>{
+    console.log(item.id);
     if(item.id === id){
-      return item
+      item.cleanliness === cleanliness
     }
+    return item
   })
-  response.status(200).json(item)
+  app.locals.items = updatedItem
+  response.status(200).json(app.locals.items)
 })
 
 app.post('/api/items', (request, response)=>{
