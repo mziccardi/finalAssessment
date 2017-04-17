@@ -41,7 +41,7 @@ const addItems = ()=>{
    $('.item-list').empty();
 	items.map((item) => {
 		$('.item-list').append(`
-			<li id=${item.id} class='items-card'>Item: ${item.name}<br/> Reason: ${item.reason}<br/> Cleanliness: ${item.cleanliness}</li>
+			<li id=${item.id} class='items-card'>Item: ${item.name}
 			`);
  })
 }
@@ -59,6 +59,25 @@ const countItems = ()=>{
   countSparklingItems()
   countDustyItems()
   countRancidItems()
+}
+
+$('.item-list').on('click', 'li',  (e)=>{
+  let id = e.target.id
+  axios.patch(`/api/items/${id}`)
+  .then((response)=>{
+    console.log(response);
+
+  })
+})
+
+const detailedItems = ()=>{
+  $('.single-item').html('')
+  
+
+}
+
+const renderSingle = ()=>{
+
 }
 
 const countSparklingItems = ()=>{
