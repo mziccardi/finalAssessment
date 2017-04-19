@@ -6,6 +6,7 @@ const cleanliness = $('#clean')
 $(document).ready(()=>{
   addItems()
   countItems()
+  toggleDoor()
 })
 
 
@@ -41,7 +42,7 @@ const addItems = ()=>{
    $('.item-list').empty();
 	items.map((item) => {
 		$('.item-list').append(`
-			<li id=${item.id} class='items-card'>Item: ${item.name}<br/> Reason: ${item.reason}<br/> Cleanliness: ${item.cleanliness}</li>
+			<li id=${item.id} class='items-card'>Item: ${item.name}
 			`);
  })
 }
@@ -59,6 +60,49 @@ const countItems = ()=>{
   countSparklingItems()
   countDustyItems()
   countRancidItems()
+}
+
+$('.item-list').on('click', 'li',  (e)=>{
+  let id = e.target.id
+  axios.get(`/api/items/${id}`)
+  .then((response)=>{
+    console.log(response);
+    let singleResponse = response.data
+    detailedItems(singleResponse)
+
+  })
+})
+
+const detailedItems = (singleResponse)=>{
+  $('.single-item').html('')
+  $('.single-item').append(renderSingle(singleResponse))
+}
+
+
+//update cleanliness
+$('.single-item').on('click', 'button', (e)=>{
+  // console.log('clikc');
+  let id = e.target.id
+  console.log(id);
+  axios.patch(`/api/items/${id}`,{
+    cleanliness:$('#newClean').find(":selected").val()
+  })
+  .then((response)=>{
+    console.log(response)
+  })
+})
+
+const renderSingle = (singleResponse)=>{
+  return (`<h5> ${singleResponse[0].name}</h5>
+    <h5>${singleResponse[0].reason}</h5>
+    <h5>${singleResponse[0].cleanliness}</h5>
+    <label> Cleanliness
+      <select id='newClean' name='cleanliness'>
+        <option value='sparkling'>sparkling</option>
+        <option value='dusty'>dusty</option>
+        <option value='rancid'>rancid</option>
+      </select>
+      <button id=${singleResponse[0].id}>Update Cleanliness</button>`)
 }
 
 const countSparklingItems = ()=>{
@@ -135,11 +179,11 @@ const countRancidHelper = (allItems)=>{
   return count
 }
 
+const toggleDoor = ()=>{
+  $('.garage').toggle()
+}
 $('.garage-door').on('click',(e)=>{
   $('.garage').toggle()
-})
-$('.sort').on('click',(e)=>{
-  sortByName()
 })
 
 // $('.submit').on('click',(e)=>{

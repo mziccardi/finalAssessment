@@ -1,11 +1,26 @@
 process.env.NODE_ENV = 'test';
 
 let chai = require('chai');
+const expect = chai.expect
+
 let should = chai.should();
 let chaiHttp = require('chai-http');
 let server = require('../server.js');
 
 chai.use(chaiHttp)
+
+describe('GET /', function() {
+  it('should return a 200 and html page', function(done) {
+    chai.request(server)
+    .get('/')
+    .end(function(err, res) {
+      if(err) { done(err); }
+      expect(res).to.have.status(200);
+      expect(res).to.be.html;
+      done();
+    });
+  });
+});
 
 describe('garage routes', ()=>{
   it('GET should return an array of items', (done)=>{
@@ -22,11 +37,10 @@ describe('garage routes', ()=>{
   it('POST should allow you to create an item', (done)=>{
     chai.request(server)
     .post('/api/items')
-    .field('_method', 'post')
-    .field('id', '13')
-    .field('name', 'skates')
-    .field('reason', 'its not year 2000')
-    .field('cleanliness', 'dusty')
+    .send({
+      name:'skates',
+      reason:'not fun'
+    })
     .end((err,res)=>{
       res.should.have.status(200)
       res.should.be.json

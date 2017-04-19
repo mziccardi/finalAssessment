@@ -41,6 +41,22 @@ app.get('/api/items/:id', (request,response)=>{
   response.status(200).json(item)
 })
 
+
+app.patch('/api/items/:id', (request,response)=>{
+  const { id } = request.params
+  const { cleanliness } = request.body
+  console.log(cleanliness);
+  const updatedItem = app.locals.items.map((item)=>{
+    console.log(item.id);
+    if(item.id === id){
+      item.cleanliness === cleanliness
+    }
+    return item
+  })
+  app.locals.items = updatedItem
+  response.status(200).json(app.locals.items)
+})
+
 app.post('/api/items', (request, response)=>{
   const newItem = {
     id:md5(request.body.name),
